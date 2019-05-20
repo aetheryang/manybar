@@ -1,0 +1,92 @@
+{
+	"name": "manybar",
+	"displayName": "manybar",
+	"description": "",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.33.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"*",
+		"onCommand:extension.helloWorld"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"viewsContainers": {
+			"activitybar": [{
+				"id":"csim-container",
+				"title": "csim",
+				"icon": "media/cabc.svg"
+			}]
+		},
+		"views": {
+			"csim-container": [
+				{
+					"id": "mode",
+					"name": "mode"
+				},
+				{
+					"id": "compile",
+					"name": "compile"
+				},
+				{
+					"id": "case",
+					"name": "case"
+				},
+				{
+					"id": "list",
+					"name": "list"
+				}
+			]
+		},
+		"menus": {
+			"view/title": [
+				{
+					"command": "csim.run",
+					"group": "navigation"
+				}
+			],
+			"view/item/context": [
+				{
+					"command": "csim.runall",
+					"when": "view == csim",
+					"group": "inline"
+				}
+			]
+		},
+		"commands": [
+			{
+				"command": "extension.helloWorld",
+				"title": "Hello World"
+			},
+			{
+				"command": "csim.run",
+				"title": "csim_run"
+			},
+			{
+				"command": "csim.runall",
+				"title":"runall"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "npm run compile && node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"typescript": "^3.3.1",
+		"vscode": "^1.1.28",
+		"tslint": "^5.12.1",
+		"@types/node": "^10.12.21",
+		"@types/mocha": "^2.2.42"
+	},
+	"dependencies": {
+		"code": "^5.2.4"
+	}
+}
